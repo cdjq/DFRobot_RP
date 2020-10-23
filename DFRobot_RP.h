@@ -45,10 +45,10 @@ public:
   bool last();
   bool start();
   bool pause();
-  bool saveRec();
+  String saveRec();
   bool delCurFile();
-  bool playSpecFile(String str);//通过输入完整路径
-  bool playSpecFile(int16_t num);//通过输入文件编号
+  void playSpecFile(String str);//通过输入完整路径
+  void playSpecFile(int16_t num);//通过输入文件编号
   uint8_t getVol();
   ePlayMode_t getPlayMode();
 private:

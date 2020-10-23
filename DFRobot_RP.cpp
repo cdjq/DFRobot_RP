@@ -21,7 +21,6 @@ bool DFRobot_RP::begin(){
 	}
   #else
     Serial1.begin(115200);
-    //Serial1.pins(2,5);
   #endif
    sPacket_t cmd;
    _s = &Serial1;
@@ -64,9 +63,10 @@ DFRobot_RP::ePlayMode_t DFRobot_RP::getPlayMode(){
    sPacket_t cmd;
    cmd = pack("PLAYMODE","?");
    writeATCommand(cmd.str,cmd.length);
-   String str = readAck();
-   playMode = str[9];
-   if(str[10] == '\r'  && str[11] == '\n')
+   String str = readAck(13);
+   playMode = str[10];
+   //Serial.println(str);
+   if(str[11] == '\r'  && str[12] == '\n')
      return (ePlayMode_t)atoi(playMode.c_str());
    else 
      return ERROR;
@@ -87,8 +87,9 @@ bool DFRobot_RP::switchFunction(eFunction_t function){
    cmd = pack("FUNCTION",String(function));
    curFunction = function;
    writeATCommand(cmd.str,cmd.length);
+   pauseFlag = 0;
    if(readAck() == "OK\r\n"){
-    pauseFlag = 0;
+    
     return true;
    } else{
     return false;
@@ -173,7 +174,7 @@ bool DFRobot_RP::start(){
    }else{
       return false;
    }
-   
+
    if(pauseFlag == 1) return false;
    pauseFlag = 1;
    writeATCommand(cmd.str,cmd.length);
@@ -203,16 +204,17 @@ bool DFRobot_RP::pause(){
    }
 }
 
-bool DFRobot_RP::saveRec(){
-   if(curFunction != RECORD) return false;
+String DFRobot_RP::saveRec(){
+   if(curFunction != RECORD) return "error";
    sPacket_t cmd;
    cmd = pack("REC","SAVE");
    writeATCommand(cmd.str,cmd.length);
    pauseFlag = 0;
-   if(readAck() == "OK\r\n"){
-    return true;
+   String str = readAck(22);
+   if(str != "error"){
+    return str;
    } else{
-    return false;
+    return "error";
    }
 }
 
@@ -229,26 +231,26 @@ bool DFRobot_RP::delCurFile(){
    }
 
 }
-bool DFRobot_RP::playSpecFile(String str){
+void DFRobot_RP::playSpecFile(String str){
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
    cmd = pack("PLAYFILE",str);
    writeATCommand(cmd.str,cmd.length);
    if(readAck() == "OK\r\n"){
-    return true;
+    return ;
    } else{
-    return false;
+    return ;
    }
 }
-bool DFRobot_RP::playSpecFile(int16_t num){
+void DFRobot_RP::playSpecFile(int16_t num){
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
    cmd = pack("PLAYFILE",String(num));
    writeATCommand(cmd.str,cmd.length);
    if(readAck() == "OK\r\n"){
-    return true;
+    return ;
    } else{
-    return false;
+    return ;
    }
 
 
@@ -273,7 +275,10 @@ DFRobot_RP::sPacket_t DFRobot_RP::pack(String cmd ,String para){
 }
 void DFRobot_RP::writeATCommand(String command,uint8_t length){
    uint8_t data[40];
-   Serial.print(command);
+   //Serial.print(command);
+    while(_s->available()) {
+         _s->read();
+    }
    for(uint8_t i=0;i<length;i++)
       data[i] = command[i];
    _s->write(data,length);
@@ -293,6 +298,7 @@ String DFRobot_RP::readAck(uint8_t len){
 	  offset++;
     }
     if(millis() - curr > 1000) {
+      return "error";
       break;
     }
   }
