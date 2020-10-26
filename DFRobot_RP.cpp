@@ -172,9 +172,9 @@ bool DFRobot_RP::start(){
 bool DFRobot_RP::pause(){
    sPacket_t cmd;
    if(curFunction = MUSIC){
-     cmd = pack("PLAY","PAUSE");
+     cmd = pack("PLAY","PP");
    }else if(curFunction = RECORD){
-     cmd = pack("REC","PAUSE");
+     cmd = pack("REC","PP");
    }else{
       return false;
    }
@@ -279,14 +279,14 @@ String DFRobot_RP::readAck(uint8_t len){
     if(_s->available()) {
        str[offset]= _s->read();
       left--;
-	  offset++;
+      offset++;
     }
     if(millis() - curr > 1000) {
       return "error";
       break;
     }
   }
-   str[len]=0;
+  str[len]=0;
   return str;
 }
 
