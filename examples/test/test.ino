@@ -1,12 +1,17 @@
 #include <DFRobot_RP.h>
+#include <SoftwareSerial.h>
+
+SoftwareSerial Serial1(2, 3);  //RX  TX
 
 DFRobot_RP rp;
 
 void setup(){
-   Serial.begin(115200);
-   while(!Serial);
-  Serial.print("begin = ");  
-  Serial.println(rp.begin());  
+  Serial.begin(115200);
+  Serial1.begin(115200);
+  while(!rp.begin(Serial1)){
+    Serial.println("初始化失败，请检查接线！");
+    delay(1000);
+  }
   Serial.print("setLED = ");
   Serial.println(rp.setLED(true));
   Serial.print("setPrompt = ");

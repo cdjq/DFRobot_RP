@@ -1,29 +1,13 @@
 #include <DFRobot_RP.h>
 
 
-#if ((defined ARDUINO_AVR_UNO) || (defined ARDUINO_AVR_NANO) ||(defined NRF5))
-    SoftwareSerial Serial1(2, 3);  //RX, TX
-#endif
 DFRobot_RP::DFRobot_RP(){
 
 }
 
-bool DFRobot_RP::begin(){
-  #ifdef  ESP_PLATFORM 
-    if(ARDUINO_VARIANT == "firebeetle32")
-    {
-      #define P0 33
-	  #define P1 32
-      Serial1.begin(115200);
-    }
-	else{
-    Serial1.begin(115200,P0,P1);
-	}
-  #else
-    Serial1.begin(115200);
-  #endif
+bool DFRobot_RP::begin(Stream &s){
    sPacket_t cmd;
-   _s = &Serial1;
+   _s = &s;
    cmd = pack();
    
    writeATCommand(cmd.str,cmd.length);
@@ -89,7 +73,7 @@ bool DFRobot_RP::switchFunction(eFunction_t function){
    writeATCommand(cmd.str,cmd.length);
    pauseFlag = 0;
    if(readAck() == "OK\r\n"){
-    
+    delay(1300);
     return true;
    } else{
     return false;
