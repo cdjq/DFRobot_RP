@@ -8,41 +8,41 @@ void setup(void){
   Serial.begin(115200);
   Serial1.begin(115200);
   while(!rp.begin(Serial1)){
-    Serial.println("初始化失败，请检查接线！");
+    Serial.println("Init failed, please check the wire connection!");
     delay(1000);
   }
-  /*设置音量为20*/
+  /*Set volume to 20*/
   rp.setVol(20);
   Serial.print("VOL:");
-  /*获取音量*/
+  /*Get volume*/
   Serial.println(rp.getVol());
-  /*进入音乐模式*/
+  /*Enter music mode*/
   rp.switchFunction(rp.MUSIC);
-  /*等待提示音播放完*/
+  /*Wait for the end of prompt tone*/
   delay(2000);
-  /*设置播放模式为全部循环*/
+  /*Set playback mode to "repeat all"*/
   rp.setPlayMode(rp.ALLCYCLE);
   Serial.print("PlayMode:");
-  /*获取播放模式*/
+  /*Get playback mode*/
   Serial.println(rp.getPlayMode());
 }
 
 void loop(){
-  /*开始播放*/
+  /*Start*/
   rp.start();
   delay(3000);
-  /*暂停播放*/
+  /*Pause*/
   rp.pause();
   delay(3000);
-  /*播放下一曲*/
+  /*Next*/
   rp.next();
   delay(3000);
-  /*播放上一曲*/
+  /*Last*/
   rp.last();
   delay(3000);
-  /*播放录音文件夹下指定编号文件(FILE0000)一次*/
+  /*Play the specific file(FILE0000) in recording files once*/
   rp.playSpecFile(1);
   while(1);
-  /*删除正在播放的文件*/
+  /*Delete the currently-playing file*/
   //rp.delCurFile();
 }
