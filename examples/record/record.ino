@@ -5,32 +5,32 @@ SoftwareSerial Serial1(2, 3);  //RX  TX
 
 DFRobot_RP rp;
 
-String RECFileName;  //录音文件名
+String RECFileName;  //Recording file name 
 
 void setup(void){
   Serial.begin(115200);
   Serial1.begin(115200);
   while(!rp.begin(Serial1)){
-    Serial.println("初始化失败，请检查接线！");
+    Serial.println("Init failed, please check the wire connection!");
     delay(1000);
   }
-  /*设置波特率，掉电保存，需掉电重启*/
+  /*Set baud rate, power-down data save，need to power down and restart*/
   //rp.setBaudRate(115200);
-  /*打开LED提示，掉电保存*/
+  /*Open LED prompt, power-down save*/
   //rp.setLED(true);
-  /*打开语音提示，掉电保存*/
+  /*Open voice prompt, power-down save*/
   //rp.setPrompt(true);
   
-  /*进入录音模式*/
+  /*Enter Recording mode */
   rp.switchFunction(rp.RECORD);
-  /*等待提示音播放完*/
+  /*Wait for the end of prompt tone/
   delay(2000);
-  /*开始录音*/
+  /*Start recording*/
   rp.start();
-  /*暂停录音*/
+  /*Pause*/
   //rp.pause();
   delay(5000);
-  /*保存录音*/
+  /*Save*/
   RECFileName = rp.saveRec();
 }
 
