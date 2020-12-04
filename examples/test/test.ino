@@ -9,7 +9,7 @@ void setup(){
   Serial.begin(115200);
   Serial1.begin(115200);
   while(!rp.begin(Serial1)){
-    Serial.println("初始化失败，请检查接线！");
+    Serial.println("Init failed, please check the wire connection！");
     delay(1000);
   }
   Serial.print("setLED = ");
@@ -52,7 +52,7 @@ void setup(){
   delay(10000);
   Serial.print("saveRec = ");
   Serial.println(rp.saveRec());
-  //需不需要返回文件名。
+  //Whether the file name needs to be returned
   Serial.print("switchFunction = ");
   Serial.println(rp.switchFunction(rp.UFDISK));
 }
