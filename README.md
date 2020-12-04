@@ -1,8 +1,6 @@
 # DFRobot_RP
 
-您是否在寻找一款简单又强大的语音录放模块？看这里！
-这款语音录放模块支持arduino、AT指令、板载按键和AD按键四种控制方式。通过板载按键即使在没有微控制器的情况下也能进行录放音。
-模块支持多段语音录制，并且模块搭载了16MB的存储空间，可以录制大约40分钟的声音。通过USB线您可以很容易的将模块中的录音拷贝到电脑上。
+Wanna buy a simple & practical voice recorder? This one is right for you! The voice recorder module supports 4 controlling modes Arduino, AT command, on-board buttons and ADKEY, and multi-segment voice recording. You can directly press the on-board buttons to record or play voice without using a controller. Moreover, the 16MB storage on the module can store up to 40 minutes recording voice and the recorded files can be copied to your computer via the type-C interface.  
 ## Table of Contents
 
 * [Summary](#summary)
@@ -13,8 +11,8 @@
 * [Credits](#credits)
 
 ## Summary
-1.记录语音<br>
-2.播放语音
+1.Audio Recording <br>
+2.Audio Playback
 
 
 ## Installation
@@ -26,42 +24,42 @@ To use this library, first download the library file, paste it into the \Arduino
   bool begin(Stream &s);
   
   /**
-   * @brief 设置波特率(需断电重启，掉电保存)
+   * @brief Set baud rate(Need to power off and restart, power-down save) 
    * @param 9600,19200,38400,57600,115200
    * @return true or false
    */
   bool setBaudRate(uint32_t baud);
 
   /**
-   * @brief 设置播放模式
+   * @brief Set playback mode
    * @param ePlayMode_t:SINGLECYCLE,ALLCYCLE,SINGLE
    * @return true or false
    */
   bool setPlayMode(ePlayMode_t mode);
 
   /**
-   * @brief 设置指示灯(掉电保存)
+   * @brief Set indicator LED(Power-down save) 
    * @param true or false
    * @return true or false
    */
   bool setLED(bool on);
   
   /**
-   * @brief 设置提示音(掉电保存)
+   * @brief Set prompt tone(power-down save) 
    * @param true or false
    * @return true or false
    */
   bool setPrompt(bool on);
   
   /**
-   * @brief 设置音量
+   * @brief Set volume 
    * @param vol:0-30
    * @return true or false
   */
   bool setVol(uint8_t vol);
   
   /**
-   * @brief 设置工作模式
+   * @brief Set working mode 
    * @param eFunction_t:MUSIC,RECORD,UFDISK
    * @return true or false
    */
@@ -69,61 +67,61 @@ To use this library, first download the library file, paste it into the \Arduino
   
   //bool operation( );
   /**
-   * @brief 下一曲
+   * @brief Next 
    * @return true or false
    */
   bool next();
   
   /**
-   * @brief 上一曲
+   * @brief Last
    * @return true or false
    */
   bool last();
   
   /**
-   * @brief 播放(在音乐模式下) or 录音(在录音模式下)
+   * @brief Play(in music mode) or Record (in recording mode)
    * @return true or false
    */
   bool start();
   
   /**
-   * @brief 暂停播放(在音乐模式下) or 暂停录音(在录音模式下)
+   * @brief Playing Pause(in music mode) or recording pause(in recording mode)
    * @return true or false
    */
   bool pause();
   
   /**
-   * @brief 保存录音
+   * @brief Save the recorded voice
    * @return true or false
    */
   String saveRec();
 
   /**
-   * @brief 删除当前播放文件
+   * @brief Delete the currently-playing file 
    * @return true or false
    */
   bool delCurFile();
   
   /**
-   * @brief 播放指定路径文件一次
-   * @param 指定路径
+   * @brief Play the file of specific path
+   * @param The designated path
    */
   void playSpecFile(String str);
   
   /**
-   * @brief 播放指定编号文件一次(仅对默认文件名有效)，如果没有则播放第一个文件
-   * @param 文件名编号：0-999
+   * @brief Play the file of specific number(only valide for the default file name), play the frist file if there is no file designated.  
+   * @param File name number: 0-999
    */
   void playSpecFile(int16_t num);
 
   /**
-   * @brief 获取音量
+   * @brief Get volume
    * @return vol
    */
   uint8_t getVol();
 
   /**
-   * @brief 获取播放模式
+   * @brief Get playback mode 
    * @return ePlayMode_t
    */
   ePlayMode_t getPlayMode();
