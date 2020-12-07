@@ -34,42 +34,42 @@ public:
   bool begin(Stream &s);
   
   /**
-   * @brief 设置波特率(需断电重启，掉电保存)
+   * @brief Set baud rate(Need to power off and restart, power-down save)  
    * @param 9600,19200,38400,57600,115200
    * @return true or false
    */
   bool setBaudRate(uint32_t baud);
 
   /**
-   * @brief 设置播放模式
+   * @brief Set playback mode
    * @param ePlayMode_t:SINGLECYCLE,ALLCYCLE,SINGLE
    * @return true or false
    */
   bool setPlayMode(ePlayMode_t mode);
 
   /**
-   * @brief 设置指示灯(掉电保存)
+   * @brief Set indicator(Power-down save) 
    * @param true or false
    * @return true or false
    */
   bool setLED(bool on);
   
   /**
-   * @brief 设置提示音(掉电保存)
+   * @brief Set prompt tone(power-down save)
    * @param true or false
    * @return true or false
    */
   bool setPrompt(bool on);
   
   /**
-   * @brief 设置音量
+   * @brief Set volume 
    * @param vol:0-30
    * @return true or false
   */
   bool setVol(uint8_t vol);
   
   /**
-   * @brief 设置工作模式
+   * @brief Set working mode 
    * @param eFunction_t:MUSIC,RECORD,UFDISK
    * @return true or false
    */
@@ -77,61 +77,62 @@ public:
   
   //bool operation( );
   /**
-   * @brief 下一曲
+   * @brief Next 
    * @return true or false
    */
   bool next();
   
   /**
-   * @brief 上一曲
+   * @brief Last 
    * @return true or false
    */
   bool last();
   
   /**
-   * @brief 播放(在音乐模式下) or 录音(在录音模式下)
+   * @brief Play(music mode) or record(recording mode) 
    * @return true or false
    */
   bool start();
   
   /**
-   * @brief 暂停播放(在音乐模式下) or 暂停录音(在录音模式下)
+   * @brief Playing pause(in music mode) or recording pause(in recording mode)
    * @return true or false
    */
   bool pause();
   
   /**
-   * @brief 保存录音
+   * @brief Save the recorded voice 
    * @return true or false
    */
   String saveRec();
 
   /**
-   * @brief 删除当前播放文件
+   * @brief Delete the currently-playing file  
    * @return true or false
    */
   bool delCurFile();
   
   /**
-   * @brief 播放指定路径文件一次
-   * @param 指定路径
+   * @brief Play the file of specific path 
+   * @param The designated path 
    */
   void playSpecFile(String str);
   
   /**
-   * @brief 播放指定编号文件一次(仅对默认文件名有效)，如果没有则播放第一个文件
-   * @param 文件名编号：0-999
+   * @brief Play the file of specific number(only valid for the default file name),
+   * @ play the first one if there is no file designated. 
+   * @param File number: 0-999
    */
   void playSpecFile(int16_t num);
 
   /**
-   * @brief 获取音量
+   * @brief Get volume 
    * @return vol
    */
   uint8_t getVol();
 
   /**
-   * @brief 获取播放模式
+   * @brief Get playback mode 
    * @return ePlayMode_t
    */
   ePlayMode_t getPlayMode();
