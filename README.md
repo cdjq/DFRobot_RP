@@ -109,7 +109,8 @@ To use this library, first download the library file, paste it into the \Arduino
   void playSpecFile(String str);
   
   /**
-   * @brief Play the file of specific number(only valide for the default file name), play the frist file if there is no file designated.  
+   * @brief Play the file of specific number(only valide for the default file name),
+   * @  play the first one if there is no file designated.  
    * @param File name number: 0-999
    */
   void playSpecFile(int16_t num);
