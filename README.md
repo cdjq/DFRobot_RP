@@ -11,8 +11,8 @@ Wanna buy a simple & practical voice recorder? This one is right for you! The vo
 * [Credits](#credits)
 
 ## Summary
-1.Audio Recording <br>
-2.Audio Playback
+1. Audio Recording <br>
+2. Audio Playback
 
 
 ## Installation
