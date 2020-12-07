@@ -10,9 +10,9 @@ class DFRobot_RP
 public:
 
   typedef enum{
-    MUSIC = 1,  //音乐模式
-    RECORD,     //录音模式
-    UFDISK,     //从机模式
+    MUSIC = 1,  //Music Mode 
+    RECORD,     //Recording Mode
+    UFDISK,     //Slave Mode
   }eFunction_t;
   
   typedef struct{
@@ -21,9 +21,9 @@ public:
   }sPacket_t;
   
   typedef enum{
-    SINGLECYCLE = 1,  //单曲循环
-    ALLCYCLE,         //全部循环
-    SINGLE,           //单曲播放一次
+    SINGLECYCLE = 1,  //Repeat one song
+    ALLCYCLE,         //Repeat all
+    SINGLE,           //Play one song once
     ERROR,
   }ePlayMode_t;
 
